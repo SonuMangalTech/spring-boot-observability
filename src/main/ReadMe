@@ -1,0 +1,22 @@
+Health check
+Check whether your application is up.
+http://localhost:8080/actuator/health
+--
+Application metrics
+View available metric names and measurements.
+http://localhost:8080/actuator/metrics
+--
+Prometheus metrics
+View the scrape-ready text format.
+http://localhost:8080/actuator/prometheus
+--
+Micrometer exposes metrics from your application;
+Prometheus collects and stores them;
+Grafana visualizes them. (Dashboards, graphs and alerts)
+
+
+-- yml file
+    > docker-compose.yml
+    > Dockerfile
+    > prometheus.yml
+    > compose.yaml

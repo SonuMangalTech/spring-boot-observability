@@ -1,0 +1,64 @@
+-- Image
+	>> docker images
+	>> docker rm -f <image-name/ID>
+	>> docker rmi -f <Image-name>
+
+-- Container
+	>> docker ps
+	>> docker compose ps
+	>> docker compose config : see config file
+	>> docker rm -f <name>
+
+-- Steps
+>> Open WSL CMD (password: mangal)
+>> Move to folder path: cd /mnt/c/Users/<your-windows-username>/<your-project-folder>
+>> Start container: docker compose up -d --build
+>> Stop container: docker compose down -v
+
+
+-- Refresh code changes:
+	>> Stop and Start container: docker compose up -d --build
+
+
+===================== Grafana Dashboard =============
+
+Connect Grafana to Prometheus
+Open http://localhost:3000.
+
+Step 1 — Sign in
+        The default credentials for a fresh Grafana installation are generally:
+        - Username: admin
+        - Password: admin
+        You may be prompted to change the password.
+
+Step 2 — Add a data source
+        Navigate to Connections → Data sources → Add data source → Prometheus.
+
+Step 3 — Configure the URL
+        Enter this URL:  http://prometheus:9090
+    Click Save & test. Because Grafana and Prometheus are on the same Docker network, use the Compose service name prometheus, not localhost.
+
+Create your first Grafana dashboard
+        Go to Dashboards → New → New dashboard → Add visualization, select Prometheus as the data source, and enter one of these queries.
+
+
+Application availability
+    Visualization: Stat
+    up{job="spring-boot"}
+    A value of 1 means the target is up; 0 means it is down.
+
+
+Request rate
+    Visualization: Time series
+    rate(http_server_requests_seconds_count[1m])
+    Shows HTTP requests per second over time.
+
+
+JVM heap memory
+    Visualization: Time series
+    sum(jvm_memory_used_bytes{area="heap"})
+    Shows used heap memory in bytes.
+
+
+
+
